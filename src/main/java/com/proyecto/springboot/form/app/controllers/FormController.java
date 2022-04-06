@@ -32,6 +32,14 @@ public class FormController {
 	
 	@PostMapping("/form")
 	public String enviarForm(@Validated Usuario usuario, BindingResult resultado, Model modelo) {
+		
+		if (resultado.hasErrors()) {
+			
+			return "form";
+		}
+		
+		/*
+		// metodo para recepcion de errores (opcional)
 		if (resultado.hasErrors()) {
 			Map<String, String> errores = new HashMap<>();
 			resultado.getFieldErrors().forEach(error ->{
@@ -40,6 +48,8 @@ public class FormController {
 			modelo.addAttribute("errores", errores);
  			return "form";
 		}
+		
+	*/
 		
 		// para mandar los datos a la vista resultado.
 		modelo.addAttribute("titulo", "Resultado de los datos form");

@@ -6,27 +6,43 @@
 </head>
 <body>
 	<h1 th:text="${titulo}" ></h1>
-	<form th:action="@{/form}" method="post">
+	<form th:action="@{/form}" th:object="${usuario}" method="post">
 		<div>
 			<label for="username">UserName</label>
 			<div>
-				<input type="text" name="username" id="username" th:value="${usuario.username}">
+				<input type="text" name="username" id="username" th:field="*{username}">
 			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+			
+			
+			<!--  complemento para el manejo de errores opcional --- el manejo se encuentra en el controlador
 			<div th:if="${errores != null && errores.containsKey('username')}" th:text="${errores.username}"></div>
+			-->
 		</div>
 		<div>
 			<label for="pass">Pass</label>
 			<div>
-				<input type="text" name="pass" id="pass" th:value="${usuario.pass}">
+				<input type="text" name="pass" id="pass" th:value="*{pass}">
 			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></div>
+			
+			<!--  complemento para el manejo de errores opcional --- el manejo se encuentra en el controlador
 			<div th:if="${errores != null && errores.containsKey('pass')}" th:text="${errores.pass}"></div>
+			-->
 		</div>
 		<div>
 			<label for="email">Email</label>
 			<div>
-				<input type="text" name="email" id="email" th:value="${usuario.email}">
+				<input type="text" name="email" id="email" th:value="*{email}">
 			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+			
+			<!--  complemento para el manejo de errores opcional --- el manejo se encuentra en el controlador
 			<div th:if="${errores != null && errores.containsKey('email')}" th:text="${errores.email}"></div>
+			-->
 		</div>
 		<div>
 			<input type="submit" value="send">
