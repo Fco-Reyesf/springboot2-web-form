@@ -8,6 +8,22 @@
 	<h1 th:text="${titulo}" ></h1>
 	<form th:action="@{/form}" th:object="${usuario}" method="post">
 		<div>
+			<label for="nombreDefecto">Nombre por defecto</label>
+			<div>
+				<input type="text" name="nombreDefecto" id="nombreDefecto" th:field="*{nombreDefecto}">
+			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('nombreDefecto')}" th:errors="*{nombreDefecto}"></div>
+		</div>
+		<div>
+			<label for="apellidoDefecto">Apellido por defecto</label>
+			<div>
+				<input type="text" name="apellidoDefecto" id="apellidoDefecto" th:field="*{apellidoDefecto}">
+			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('apellidoDefecto')}" th:errors="*{apellidoDefecto}"></div>
+		</div>
+		<div>
 			<label for="username">UserName</label>
 			<div>
 				<input type="text" name="username" id="username" th:field="*{username}">

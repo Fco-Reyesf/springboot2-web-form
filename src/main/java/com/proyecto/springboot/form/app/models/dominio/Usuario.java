@@ -4,6 +4,14 @@ import javax.validation.constraints.NotEmpty;
 
 public class Usuario {
 	
+	private String id;
+	
+	@NotEmpty
+	private String nombreDefecto;
+	
+	@NotEmpty
+	private String apellidoDefecto;
+	
 	@NotEmpty
 	private String username;
 	
@@ -36,5 +44,31 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getNombreDefecto() {
+		return nombreDefecto;
+	}
+
+	public void setNombreDefecto(String nombreDefecto) {
+		this.nombreDefecto = nombreDefecto;
+	}
+
+	public String getApellidoDefecto() {
+		return apellidoDefecto;
+	}
+
+	public void setApellidoDefecto(String apellidoDefecto) {
+		this.apellidoDefecto = apellidoDefecto;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
 
 }
