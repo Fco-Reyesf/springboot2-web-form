@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -23,6 +25,13 @@ public class FormController {
 
 	@Autowired
 	private usuarioValidador uservalid;
+	
+	// valida al crear la instancia
+	// con addvalidators agrega validadores (mezcla la clase usuarioValidador y los validadores de la clase usuario)
+	@InitBinder
+	public void validadar(WebDataBinder binder) {
+		binder.addValidators(uservalid);
+	}
 	
 	@GetMapping("/form")
 	public String form(Model modelo) {
@@ -43,7 +52,8 @@ public class FormController {
 	
 	@PostMapping("/form")
 	public String enviarForm(@Validated Usuario usuario, BindingResult resultado, Model modelo, SessionStatus status) {
-		uservalid.validate(usuario, resultado);
+		// forma de validar opcional
+		//uservalid.validate(usuario, resultado);
 		if (resultado.hasErrors()) {
 			
 			return "form";
