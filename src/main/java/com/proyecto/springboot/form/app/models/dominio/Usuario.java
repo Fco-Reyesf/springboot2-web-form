@@ -2,13 +2,15 @@ package com.proyecto.springboot.form.app.models.dominio;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Usuario {
 	
+	//@Pattern(regexp="[0-9]{1}")
 	private String id;
 	
-	@NotEmpty
+	//@NotEmpty
 	private String nombreDefecto;
 	
 	@NotEmpty
