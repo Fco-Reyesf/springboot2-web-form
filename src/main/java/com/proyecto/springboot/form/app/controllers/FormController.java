@@ -10,10 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.proyecto.springboot.form.app.models.dominio.Usuario;
 
 @Controller
+@SessionAttributes("usuario")			// mantiene los datos del objeto usuario
 public class FormController {
 
 	@GetMapping("/form")
@@ -34,7 +37,7 @@ public class FormController {
 	 */
 	
 	@PostMapping("/form")
-	public String enviarForm(@Validated Usuario usuario, BindingResult resultado, Model modelo) {
+	public String enviarForm(@Validated Usuario usuario, BindingResult resultado, Model modelo, SessionStatus status) {
 		
 		if (resultado.hasErrors()) {
 			
@@ -57,6 +60,7 @@ public class FormController {
 		// para mandar los datos a la vista resultado.
 		modelo.addAttribute("titulo", "Resultado de los datos form");
 		modelo.addAttribute("usuario", usuario);
+		status.setComplete();		// limpia los datos de la session
 		return "resultado";
 	}
 }
