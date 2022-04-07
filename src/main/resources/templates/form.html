@@ -15,6 +15,7 @@
 			<!-- metodo 2, de manejo de errores -->
 			<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
 		</div>
+		<br>
 		<div>
 			<label for="nombreDefecto">Nombre por defecto</label>
 			<div>
@@ -23,6 +24,7 @@
 			<!-- metodo 2, de manejo de errores -->
 			<div th:if="${#fields.hasErrors('nombreDefecto')}" th:errors="*{nombreDefecto}"></div>
 		</div>
+		<br>
 		<div>
 			<label for="apellidoDefecto">Apellido por defecto</label>
 			<div>
@@ -31,6 +33,7 @@
 			<!-- metodo 2, de manejo de errores -->
 			<div th:if="${#fields.hasErrors('apellidoDefecto')}" th:errors="*{apellidoDefecto}"></div>
 		</div>
+		<br>
 		<div>
 			<label for="username">UserName</label>
 			<div>
@@ -44,10 +47,20 @@
 			<div th:if="${errores != null && errores.containsKey('username')}" th:text="${errores.username}"></div>
 			-->
 		</div>
+		<br>
+		<div>
+			<label for="cuenta">Cuenta</label>
+			<div>
+				<input type="number" name="cuenta" id="cuenta" th:field="*{cuenta}">
+			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+		</div>
+		<br>
 		<div>
 			<label for="pass">Pass</label>
 			<div>
-				<input type="text" name="pass" id="pass" th:value="*{pass}">
+				<input type="password" name="pass" id="pass" th:value="*{pass}">
 			</div>
 			<!-- metodo 2, de manejo de errores -->
 			<div th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></div>
@@ -56,6 +69,7 @@
 			<div th:if="${errores != null && errores.containsKey('pass')}" th:text="${errores.pass}"></div>
 			-->
 		</div>
+		<br>
 		<div>
 			<label for="email">Email</label>
 			<div>
@@ -68,6 +82,7 @@
 			<div th:if="${errores != null && errores.containsKey('email')}" th:text="${errores.email}"></div>
 			-->
 		</div>
+		<br>
 		<div>
 			<input type="submit" value="send">
 		</div>

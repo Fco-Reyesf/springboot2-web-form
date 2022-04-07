@@ -10,6 +10,7 @@ import com.proyecto.springboot.form.app.models.dominio.Usuario;
 @Component
 public class usuarioValidador implements Validator {
 
+	// indica que case se valida
 	@Override
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
