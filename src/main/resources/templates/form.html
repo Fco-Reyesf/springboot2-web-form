@@ -71,6 +71,15 @@
 		</div>
 		<br>
 		<div>
+			<label for="fechaNacimiento">Fecha de nacimiento</label>
+			<div>
+				<input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy-MM-dd">
+			</div>
+			<!-- metodo 2, de manejo de errores -->
+			<div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+		</div>
+		<br>
+		<div>
 			<label for="email">Email</label>
 			<div>
 				<input type="text" name="email" id="email" th:value="*{email}">
