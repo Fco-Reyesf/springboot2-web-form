@@ -44,7 +44,7 @@ public class Usuario {
 	@NotNull
 	//@PastOrPresent			// restringe la fecha a fechas presente o pasadas
 	@Future
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
 	
 	public String getUsername() {
