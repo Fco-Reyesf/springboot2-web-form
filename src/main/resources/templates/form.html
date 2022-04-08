@@ -12,7 +12,7 @@
 			<div>
 				<select id="paises" th:field="*{pais}">
 					<option value="" > ------ Seleccionar pais ---------</option>
-					<option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option>
+					<option th:each="pais: ${paisesMap.entrySet()}" th:text="${pais.value}" th:value="${pais.Key}"></option>
 				</select>
 			</div>
 			<!-- metodo 2, de manejo de errores -->
