@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.proyecto.springboot.form.app.models.dominio.Pais;
 import com.proyecto.springboot.form.app.models.dominio.Usuario;
 import com.proyecto.springboot.form.app.validadores.usuarioValidador;
 
@@ -41,6 +42,15 @@ public class FormController {
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
+	
+	@ModelAttribute("listaPaises")
+	public List<Pais> listaPaises () {
+		return Arrays.asList(
+				new Pais(1, "ES","España"),
+				new Pais(2, "CL", "Chile"),
+				new Pais(3, "MX", "Mexico"),
+				new Pais(4, "AR", "Argentina"));
+	}	
 	
 	// carga los atributos.
 	@ModelAttribute("paises")

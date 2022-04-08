@@ -8,15 +8,16 @@
 	<h1 th:text="${titulo}" ></h1>
 	<form th:action="@{/form}" th:object="${usuario}" method="post">
 		<div>
-			<label for="pais">Paises</label>
+			<!-- Recordar que el field debe estar mapeado al atributo mapeado -->
+			<label for="pais.id">Paises</label>
 			<div>
-				<select id="paises" th:field="*{pais}">
+				<select id="paises" th:field="*{pais.id}">
 					<option value="" > ------ Seleccionar pais ---------</option>
-					<option th:each="pais: ${paisesMap.entrySet()}" th:text="${pais.value}" th:value="${pais.Key}"></option>
+					<option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
 				</select>
 			</div>
 			<!-- metodo 2, de manejo de errores -->
-			<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+			<div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}"></div>
 		</div>
 		<br>
 		<div>
