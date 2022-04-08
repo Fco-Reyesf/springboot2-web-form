@@ -14,6 +14,8 @@
 		<li th:text="${usuario.username}" ></li>
 		<li th:text="${usuario.cuenta}" ></li>
 		<li th:text="${usuario.pass}" ></li>
+		<!-- #dates, elemento helper de thymeleaf  --> 
+		<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}" ></li>
 		<li th:text="${usuario.email}" ></li>
 	</ul>
 </body>
