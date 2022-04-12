@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -102,11 +103,11 @@ public class FormController {
 	 */
 	
 	@PostMapping("/form")
-	public String enviarForm(@Validated Usuario usuario, BindingResult resultado, Model modelo, SessionStatus status) {
+	public String enviarForm(@Validated Usuario usuario, BindingResult resultado, Model modelo) {
 		// forma de validar opcional
 		//uservalid.validate(usuario, resultado);
 		if (resultado.hasErrors()) {
-			
+			modelo.addAttribute("titulo", "Resultado de los datos form");
 			return "form";
 		}
 		
@@ -124,9 +125,18 @@ public class FormController {
 	*/
 		
 		// para mandar los datos a la vista resultado.
+		return "redirect:/ver";
+	}
+	
+	@GetMapping("/ver")
+	public String ver(@SessionAttribute(name = "usuario", required = false) Usuario usuario, Model modelo, SessionStatus status) {
+		if (usuario == null) {
+			return "redirect:/form";
+		}
+		
 		modelo.addAttribute("titulo", "Resultado de los datos form");
-		modelo.addAttribute("usuario", usuario);
 		status.setComplete();		// limpia los datos de la session
 		return "resultado";
 	}
+	
 }
