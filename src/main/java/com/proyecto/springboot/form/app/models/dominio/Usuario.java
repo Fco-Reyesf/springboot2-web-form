@@ -52,6 +52,9 @@ public class Usuario {
 	@NotEmpty
 	private List<String> roles;
 	
+	@NotEmpty
+	private String genero;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -132,7 +135,12 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-	
-	
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 
 }
