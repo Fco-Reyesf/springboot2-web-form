@@ -23,6 +23,12 @@ public class tiempoInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
+		// verifica el tipo de request y cancela la operacion si es post
+		// complemento para if de componentes/tiempo del th.
+		if(request.getMethod().equalsIgnoreCase("post")) {
+			return true;
+		}
+		
 		if(handler instanceof HandlerMethod) {
 			HandlerMethod metodo = (HandlerMethod) handler;
 			logger.info("es un metodo del controlador...." + metodo.getMethod().getName());

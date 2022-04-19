@@ -16,7 +16,8 @@ public class mvcConfig  implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(tiempoTranscurridoInterceptor);
+		// el ** de /form/** indica, cualquier ruta que sigue de form
+		registry.addInterceptor(tiempoTranscurridoInterceptor).addPathPatterns("/form/**");
 	}
 
 	
