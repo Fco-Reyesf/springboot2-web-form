@@ -41,6 +41,7 @@ public class tiempoInterceptor implements HandlerInterceptor {
 		Random rnd = new Random();
 		Integer demora = rnd.nextInt(500);
 		Thread.sleep(demora);
+		// si retorna false ,  no continua con la muestra de la pagina.
 		return true;
 	}
 
@@ -48,15 +49,17 @@ public class tiempoInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-		long tiempoTermino = System.currentTimeMillis();
-		long tiempoInicio = (Long)request.getAttribute("tiempoInicio");
-		long tiempoDemora = tiempoTermino -tiempoInicio;
-		
-		if(handler instanceof HandlerMethod && modelAndView != null) {
-			modelAndView.addObject("tiempoDemora",tiempoDemora);
+		if(!request.getMethod().equalsIgnoreCase("post")) {
+			long tiempoTermino = System.currentTimeMillis();
+			long tiempoInicio = (Long)request.getAttribute("tiempoInicio");
+			long tiempoDemora = tiempoTermino -tiempoInicio;
+			
+			if(handler instanceof HandlerMethod && modelAndView != null) {
+				modelAndView.addObject("tiempoDemora",tiempoDemora);
+			}
+			logger.info("tiempo transcurrido: " + tiempoDemora + " en milisegundos");
+			logger.info("tiempoInterceptos: postHandles() terminando....");
 		}
-		logger.info("tiempo transcurrido: " + tiempoDemora + " en milisegundos");
-		logger.info("tiempoInterceptos: postHandles() terminando....");
 	}
 	
 	
